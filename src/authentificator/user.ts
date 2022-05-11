@@ -40,6 +40,7 @@ export interface UserType {
     firstName: string,
     lastName: string,
     permission: permissionType,
+    _id?: string
 };
 
 export default User;

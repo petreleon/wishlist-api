@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 import config from './config/config';
 import verify from './authentificator/verifier';
 import { ConnectOptions } from 'mongoose';
-import { routerFiles } from './services/aws/upload/upload';
+// import { routerFiles } from './services/aws/upload/upload';
 
 mongoose.connect(config.mongoUrl, {
     useNewUrlParser: true,
@@ -36,7 +36,7 @@ app.get( "/", [verify], ( _req : Request, res :Response) => {
     );
 } );
 
-app.use('/files', routerFiles);
+// app.use('/files', routerFiles);
 // start the Express server
 app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );

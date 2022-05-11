@@ -45,6 +45,7 @@
     "http": "^0.0.1-security",
     "jose": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
+    "metascraper": "^5.29.3",
     "mongoose": "^6.2.9",
     "multer-gridfs-storage": "^5.0.2",
     "multer-s3": "^2.10.0",
