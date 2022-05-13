@@ -23,7 +23,15 @@ const listElementSchema = new Schema({
     },
     isChecked: {
         type: Boolean,
-        default: false
+        default: true
+    }, 
+    imageUrl: {
+        type: String,
+        required: true
+    },
+    logoUrl: {
+        type: String,
+        required: true
     }
 });
 
@@ -32,7 +40,11 @@ const ListElement = model('ListElement', listElementSchema);
 export interface ListElementType {
     name: string,
     creationTime?: Date,
+    owner: string,
     listId: string,
+    imageUrl: string,
+    logoUrl: string,
+    description: string,
     isChecked?: boolean,
     _id?: string
 }
