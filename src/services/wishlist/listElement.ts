@@ -32,6 +32,10 @@ const listElementSchema = new Schema({
     logoUrl: {
         type: String,
         required: true
+    },
+    url: {
+        type: String,
+        required: true
     }
 });
 
@@ -46,6 +50,7 @@ export interface ListElementType {
     logoUrl: string,
     description: string,
     isChecked?: boolean,
+    url: string,
     _id?: string
 }
 

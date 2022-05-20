@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import List, { ListType } from './list';
 import ListElement, { ListElementType } from './listElement';
 
-import verify from '../../authentificator/verifier';
+// import verify from '../../authentificator/verifier';
 
 import metascraper = require( "metascraper" );
 import metascraper_image = require( "metascraper-image" );
@@ -35,10 +35,8 @@ function ownerOnly(owner: string, user: string, req: Request, res: Response, nex
 }
 
 const private_router = express.Router();
-const router = express.Router();
 
-router.use(private_router)
-private_router.use(verify);
+const public_router = express.Router();
 
 private_router.get('/', async (req: Request, res: Response) => {
     try {
@@ -53,7 +51,7 @@ private_router.get('/', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/list/:id', async (req: Request, res: Response) => {
+public_router.get('/list/:id', async (req: Request, res: Response) => {
     try {
         const list = await List.findById(req.params.id) as ListType;
         const elements = await ListElement.find({ list: list._id }).sort({"creationTime": "asc"}) as ListElementType[];
@@ -154,7 +152,8 @@ private_router.post('/list/:id/element', async (req: Request, res: Response) => 
                     listId: list._id,
                     isChecked: false,
                     imageUrl: metadata.image as string,
-                    logoUrl: metadata.logo as string
+                    logoUrl: metadata.logo as string,
+                    url: metadata.url as string
                 } as ListElementType;
                 const element = await ListElement.create(elementToCreate) as ListElementType;
                 res.status(201).json({
@@ -242,5 +241,5 @@ private_router.put('/list/:id', async (req: Request, res: Response) => {
 });
 
 
-export default router;
+export { private_router, public_router };
 
