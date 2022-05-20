@@ -54,7 +54,7 @@ private_router.get('/', async (req: Request, res: Response) => {
 public_router.get('/list/:id', async (req: Request, res: Response) => {
     try {
         const list = await List.findById(req.params.id) as ListType;
-        const elements = await ListElement.find({ list: list._id }).sort({"creationTime": "asc"}) as ListElementType[];
+        const elements = await ListElement.find({ listId: list._id }).sort({"creationTime": "asc"}) as ListElementType[];
         res.status(200).json({
             list,
             elements
